@@ -1,34 +1,37 @@
-﻿public class CalculateCommand : ICommand {
-    private CalculatorButtons _operator;
-        private int _operandA;
-        private int _operandB;
+﻿using UnityEditor.PackageManager.Requests;
+using UnityEngine;
+
+public class CalculateCommand : ICommand {
+    private Operations _operator;
+        private int _operand;
         private Calculator _calculator;
 
-    public CalculateCommand(Calculator calculator, CalculatorButtons @operator, int operandA, int operandB) {
+    public CalculateCommand(Calculator calculator, Operations @operator, int operand) {
            _calculator = calculator;
            _operator = @operator;
-           _operandA = operandA;
-           _operandB = operandB;
-        }
+           _operand = operand;
+    }
 
         public void Execute() {
-            _calculator.Operation(_operator, _operandA, _operandB);
+            _calculator.Operation(_operator, _operand);
+            Debug.Log("Request operation: " + _operator + " operand: " + _operand);
         }
 
         public void UnExecute() {
-            _calculator.Operation(Undo(_operator), _operandA, _operandB);
+            _calculator.Operation(Undo(_operator), _operand);
+            Debug.Log("Undo request operation: " + Undo(_operator) + " operand: " + _operand);
         }
 
-    private CalculatorButtons Undo(CalculatorButtons @operator) {
+    private Operations Undo(Operations @operator) {
             switch (@operator) {
-            case CalculatorButtons.plus: 
-                return CalculatorButtons.minus;
-            case CalculatorButtons.minus: 
-                return CalculatorButtons.plus;
-            case CalculatorButtons.mul: 
-                return CalculatorButtons.div;
+            case Operations.plus: 
+                return Operations.minus;
+            case Operations.minus: 
+                return Operations.plus;
+            case Operations.multiply: 
+                return Operations.divide;
             default:
-                return  CalculatorButtons.mul;
+                return  Operations.multiply;
             }
         }
 }

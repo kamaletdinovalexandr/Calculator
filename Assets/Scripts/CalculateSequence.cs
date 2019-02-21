@@ -13,8 +13,8 @@ public class CalculateSequence {
         }
     }
 
-    public void Compute(CalculatorButtons @operator, int operandA, int operandB) {
-        ICommand command = new CalculateCommand(_calculator, @operator, operandA, operandB);
+    public void Compute(Operations @operator, int operand) {
+        ICommand command = new CalculateCommand(_calculator, @operator, operand);
         command.Execute();
         _commands.Add(command);
         _commandIndex++;

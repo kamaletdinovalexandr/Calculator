@@ -1,13 +1,15 @@
-﻿public class Calculator {
+﻿using System.Collections.Generic;
+using UnityEditor;
 
+public class Calculator {
     public int Result { get; private set; }
 
-    public void Operation(CalculatorButtons @operator, int operandA, int operandB) {
+    public void Operation(Operations @operator, int operand) {
         switch (@operator) {
-            case CalculatorButtons.plus: Result = operandA + operandB; break;
-            case CalculatorButtons.minus: Result = operandA - operandB; break;
-            case CalculatorButtons.mul: Result = operandA *  operandB; break;
-            case CalculatorButtons.div: Result = operandA / operandB; break;
+            case Operations.plus: Result += operand; break;
+            case Operations.minus: Result -= operand; break;
+            case Operations.multiply: Result *= operand; break;
+            case Operations.divide: Result /= operand; break;
         }
     }
 }

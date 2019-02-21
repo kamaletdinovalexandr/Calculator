@@ -1,0 +1,13 @@
+.idea
+*.csproj
+*.sln
+.vs
+Library
+ProjectSettings
+Temp
+obj
+*.user
+Assets/Plugins
+Plugins.meta
+Logs
+Packages
